@@ -40,7 +40,7 @@ hello,bye
 こんにちは,さようなら
 ```
 
-Try piping a string and see how each of occurrence of the first value is replaced as the second.
+Try piping a string and see how each occurrence of the first value is replaced as the second.
 
 ```sh
 $ echo "hello (こんにちは) my favorite number is 123456123." | swapall ./replacements.csv
