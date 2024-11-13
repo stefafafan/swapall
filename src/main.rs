@@ -26,19 +26,18 @@ fn main() {
             eprintln!("Expected 2 columns, got {}", record.len());
             std::process::exit(1);
         }
-        let key = record.get(0).expect("Failed to get key");
-        let value = record.get(1).expect("Failed to get value");
-        map.insert(key.to_string(), value.to_string());
+        let from = record.get(0).expect("Failed to get the first value");
+        let to = record.get(1).expect("Failed to get the second value");
+        map.insert(from.to_string(), to.to_string());
     }
 
-    // Replace all occurrences in stdin of key to value.
     let stdin = std::io::stdin();
     let stdout = std::io::stdout();
     let mut handle = stdout.lock();
     for line in stdin.lock().lines() {
         let mut line = line.expect("Failed to read line");
-        for (key, value) in &map {
-            line = line.replace(key, value.trim());
+        for (from, to) in &map {
+            line = line.replace(from, to.trim());
         }
         writeln!(handle, "{}", line).expect("Failed to write line");
     }
